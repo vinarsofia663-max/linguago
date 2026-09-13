@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaGo — Вивчай англійську</title>
+
+<style>
+:root{
+    --bg:#fffbea;
+    --card:#ffffff;
+    --yellow:#f6d45b;
+    --yellow2:#eab93e;
+    --cream:#fff4c7;
+    --green:#a8c66c;
+    --text:#3f392b;
+    --muted:#81785f;
+    --border:#f0df9a;
+    --shadow:0 10px 30px rgba(94,75,20,.10);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+body.dark{
+    --bg:#252419;
+    --card:#343225;
+    --yellow:#e5bd45;
+    --yellow2:#d6aa31;
+    --cream:#4a432d;
+    --green:#819c50;
+    --text:#fff9df;
+    --muted:#d4cda9;
+    --border:#62572d;
+    --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,251,234,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+}
+
+.dark header{
+    background:rgba(37,36,25,.95);
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:var(--text);
+}
+
+.logo span{
+    color:#d3a52d;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:var(--text);
+    text-decoration:none;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#c49720;
+}
+
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:1px solid var(--border);
+    background:var(--card);
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1200px;
+    margin:35px auto;
+    padding:70px 50px;
+    border-radius:35px;
+    background:
+        radial-gradient(circle at 90% 20%,#fff1a8 0,transparent 25%),
+        linear-gradient(135deg,#fff4bd,#ffe58a);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    overflow:hidden;
+}
+
+.dark .hero{
+    background:linear-gradient(135deg,#504727,#695b2b);
+}
+
+.hero-text{
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    background:#fff;
+    border-radius:30px;
+    color:#a47708;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:56px;
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#c79516;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.6;
+    color:var(--muted);
+}
+
+.hero-buttons{
+    margin-top:30px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:15px 25px;
+    border-radius:15px;
+    background:var(--yellow);
+    color:#473b16;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    background:var(--yellow2);
+}
+
+.btn.secondary{
+    background:white;
+    border:1px solid var(--border);
+}
+
+.hero-emoji{
+    font-size:170px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    50%{transform:translateY(-12px) rotate(3deg)}
+}
+
+/* GENERAL */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px 25px;
+}
+
+.section-title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.section-title h2{
+    font-size:36px;
+}
+
+.section-title p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.stat{
+    background:var(--card);
+    padding:25px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.stat-icon{
+    font-size:32px;
+}
+
+.stat-number{
+    font-size:27px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.stat-label{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card-icon{
+    font-size:45px;
+}
+
+.card h3{
+    margin:15px 0 8px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.5;
+}
+
+/* VOCABULARY */
+
+.search{
+    width:100%;
+    max-width:600px;
+    display:block;
+    margin:0 auto 30px;
+    padding:16px 20px;
+    border:2px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:18px;
+    outline:none;
+    font-size:16px;
+}
+
+.words{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.word-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+
+.word-icon{
+    font-size:40px;
+}
+
+.word{
+    font-size:25px;
+    font-weight:bold;
+    margin:10px 0 5px;
+}
+
+.translation{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.sound{
+    border:none;
+    background:var(--cream);
+    border-radius:12px;
+    padding:9px 15px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* GRAMMAR */
+
+.grammar-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.example{
+    background:var(--cream);
+    padding:20px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.example b{
+    color:#a47708;
+}
+
+/* QUIZ */
+
+.quiz{
+    max-width:700px;
+    margin:auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:35px;
+    box-shadow:var(--shadow);
+}
+
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.quiz h3{
+    font-size:25px;
+    margin-bottom:25px;
+}
+
+.answers{
+    display:grid;
+    gap:12px;
+}
+
+.answer{
+    padding:15px;
+    border:2px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:14px;
+    cursor:pointer;
+    text-align:left;
+    font-size:16px;
+}
+
+.answer:hover{
+    background:var(--cream);
+}
+
+.answer.correct{
+    background:#dff0bd;
+    border-color:#8eb34c;
+}
+
+.answer.wrong{
+    background:#ffd8d2;
+    border-color:#e38a7d;
+}
+
+.next{
+    margin-top:20px;
+    display:none;
+}
+
+/* PROGRESS */
+
+.progress-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.progress-card{
+    background:var(--card);
+    padding:30px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    box-shadow:var(--shadow);
+}
+
+.progress-bar{
+    height:20px;
+    background:#eee5bd;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress-fill{
+    width:68%;
+    height:100%;
+    background:linear-gradient(90deg,var(--yellow2),var(--green));
+    border-radius:20px;
+}
+
+.achievement{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    background:var(--cream);
+    border-radius:15px;
+    margin-top:12px;
+}
+
+.achievement-icon{
+    font-size:35px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:70px;
+    background:#3d3828;
+    color:#fff5c9;
+    text-align:center;
+    padding:35px;
+}
+
+footer p{
+    margin:7px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .words{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grammar-box,
+    .progress-layout{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero-emoji{
+        font-size:100px;
+    }
+}
+
+@media(max-width:650px){
+
+    nav{
+        display:none;
+    }
+
+    .header-inner{
+        padding:13px 15px;
+    }
+
+    .hero{
+        margin:15px;
+        padding:45px 25px;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-emoji{
+        display:none;
+    }
+
+    .stats,
+    .cards,
+    .words{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:20px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div class="logo">
+            🌎 Lingua<span>Go</span>
+        </div>
+
+        <nav>
+            <a href="#home">Головна</a>
+            <a href="#words">Слова</a>
+            <a href="#grammar">Граматика</a>
+            <a href="#quiz">Тести</a>
+            <a href="#progress">Прогрес</a>
+        </nav>
+
+        <div class="header-buttons">
+            <button class="icon-btn" onclick="toggleTheme()">🌙</button>
+        </div>
+
+    </div>
+</header>
+
+
+<main id="home">
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="badge">
+            ⭐ Твоя подорож до англійської
+        </div>
+
+        <h1>
+            Вивчай англійську
+            <span>легко!</span>
+        </h1>
+
+        <p>
+            Нові слова, цікава граматика,
+            інтерактивні тести та твій особистий
+            прогрес — усе в одному місці.
+        </p>
+
+        <div class="hero-buttons">
+            <a class="btn" href="#words">
+                🚀 Почати навчання
+            </a>
+
+            <a class="btn secondary" href="#quiz">
+                🎯 Пройти тест
+            </a>
+        </div>
+
+    </div>
+
+    <div class="hero-emoji">
+        🌎
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<div class="container">
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-icon">📚</div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">нових слів</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📝</div>
+            <div class="stat-number">100+</div>
+            <div class="stat-label">тестів</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-number">25</div>
+            <div class="stat-label">досягнень</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-number" id="streak">7</div>
+            <div class="stat-label">днів поспіль</div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- СЛОВА -->
+
+<section id="words">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>📚 Вивчай нові слова</h2>
+        <p>Натисни 🔊, щоб почути вимову</p>
+    </div>
+
+    <input
+        class="search"
+        id="search"
+        placeholder="🔎 Знайти слово..."
+        oninput="searchWords()"
+    >
+
+    <div class="words" id="wordList">
+
+        <div class="word-card" data-word="apple">
+            <div class="word-icon">🍎</div>
+            <div class="word">Apple</div>
+            <div class="translation">Яблуко</div>
+            <button class="sound" onclick="speak('Apple')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="book">
+            <div class="word-icon">📖</div>
+            <div class="word">Book</div>
+            <div class="translation">Книга</div>
+            <button class="sound" onclick="speak('Book')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="friend">
+            <div class="word-icon">👋</div>
+            <div class="word">Friend</div>
+            <div class="translation">Друг</div>
+            <button class="sound" onclick="speak('Friend')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="school">
+            <div class="word-icon">🏫</div>
+            <div class="word">School</div>
+            <div class="translation">Школа</div>
+            <button class="sound" onclick="speak('School')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="sun">
+            <div class="word-icon">☀️</div>
+            <div class="word">Sun</div>
+            <div class="translation">Сонце</div>
+            <button class="sound" onclick="speak('Sun')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="water">
+            <div class="word-icon">💧</div>
+            <div class="word">Water</div>
+            <div class="translation">Вода</div>
+            <button class="sound" onclick="speak('Water')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="family">
+            <div class="word-icon">👨‍👩‍👧</div>
+            <div class="word">Family</div>
+            <div class="translation">Сім'я</div>
+            <button class="sound" onclick="speak('Family')">🔊 Почути</button>
+        </div>
+
+        <div class="word-card" data-word="beautiful">
+            <div class="word-icon">🌸</div>
+            <div class="word">Beautiful</div>
+            <div class="translation">Гарний</div>
+            <button class="sound" onclick="speak('Beautiful')">🔊 Почути</button>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ГРАМАТИКА -->
+
+<section id="grammar">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>📖 Граматика</h2>
+        <p>Вивчай правила на простих прикладах</p>
+    </div>
+
+    <div class="grammar-box">
+
+        <div class="card">
+
+            <div class="card-icon">🟢</div>
+
+            <h3>Present Simple</h3>
+
+            <p>
+                Використовуємо для регулярних дій,
+                звичок та фактів.
+            </p>
+
+            <div class="example">
+                <b>I play football every day.</b>
+                <br><br>
+                Я граю у футбол щодня.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🔵</div>
+
+            <h3>Past Simple</h3>
+
+            <p>
+                Використовуємо для дій,
+                які відбулися в минулому.
+            </p>
+
+            <div class="example">
+                <b>I visited London yesterday.</b>
+                <br><br>
+                Я відвідав Лондон учора.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🟣</div>
+
+            <h3>Future Simple</h3>
+
+            <p>
+                Використовуємо для майбутніх дій.
+            </p>
+
+            <div class="example">
+                <b>I will study tomorrow.</b>
+                <br><br>
+                Я буду навчатися завтра.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🟡</div>
+
+            <h3>Present Continuous</h3>
+
+            <p>
+                Використовуємо для дій,
+                які відбуваються зараз.
+            </p>
+
+            <div class="example">
+                <b>I am reading now.</b>
+                <br><br>
+                Я зараз читаю.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ТЕСТ -->
+
+<section id="quiz">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>🎯 Перевір свої знання</h2>
+        <p>Відповідай на питання та отримуй бали</p>
+    </div>
+
+    <div class="quiz">
+
+        <div class="quiz-top">
+            <span id="questionNumber">Питання 1 / 10</span>
+            <span>⭐ <span id="quizScore">0</span></span>
+        </div>
+
+        <h3 id="question">
+            Завантаження...
+        </h3>
+
+        <div class="answers" id="answers"></div>
+
+        <button
+            class="btn next"
+            id="nextButton"
+            onclick="nextQuestion()">
+            Наступне →
+        </button>
+
+        <div id="quizResult"></div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ПРОГРЕС -->
+
+<section id="progress">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>🏆 Мій прогрес</h2>
+        <p>Слідкуй за своїми результатами</p>
+    </div>
+
+    <div class="progress-layout">
+
+        <div class="progress-card">
+
+            <h3>📈 Загальний прогрес</h3>
+
+            <br>
+
+            <strong>68% завершено</strong>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <p style="color:var(--muted)">
+                Продовжуй навчання, щоб досягти
+                наступного рівня!
+            </p>
+
+            <br>
+
+            <h3>⭐ Рівень: Beginner</h3>
+
+            <p style="color:var(--muted)">
+                120 / 200 XP до наступного рівня
+            </p>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <h3>🏅 Досягнення</h3>
+
+            <div class="achievement">
+                <div class="achievement-icon">🔥</div>
+                <div>
+                    <b>7 днів поспіль</b>
+                    <p>Навчайся щодня</p>
+                </div>
+            </div>
+
+            <div class="achievement">
+                <div class="achievement-icon">📚</div>
+                <div>
+                    <b>100 слів</b>
+                    <p>Вивчи 100 нових слів</p>
+                </div>
+            </div>
+
+            <div class="achievement">
+                <div class="achievement-icon">🎯</div>
+                <div>
+                    <b>Перший тест</b>
+                    <p>Пройди свій перший тест</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <h3>🌎 LinguaGo</h3>
+
+    <p>
+        Твій простий шлях до вивчення англійської.
+    </p>
+
+    <p>
+        © 2026 LinguaGo
+    </p>
+
+</footer>
+
+
+<script>
+
+/* ТЕМНА ТЕМА */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark");
+    }else{
+        localStorage.setItem("theme","light");
+    }
+}
+
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark");
+}
+
+
+/* ОЗВУЧЕННЯ */
+
+function speak(word){
+
+    const speech = new SpeechSynthesisUtterance(word);
+
+    speech.lang="en-US";
+    speech.rate=0.85;
+
+    speechSynthesis.speak(speech);
+}
+
+
+/* ПОШУК */
+
+function searchWords(){
+
+    const value =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".word-card");
+
+    cards.forEach(card=>{
+
+        const word =
+            card.dataset.word;
+
+        if(word.includes(value)){
+            card.style.display="block";
+        }else{
+            card.style.display="none";
+        }
+
+    });
+
+}
+
+
+/* ТЕСТ */
+
+const questions=[
+
+{
+    q:"Як перекладається слово 'Apple'?",
+    answers:["Яблуко","Будинок","Сонце","Книга"],
+    correct:0
+},
+
+{
+    q:"Як перекладається слово 'Friend'?",
+    answers:["Учитель","Друг","Школа","Сім'я"],
+    correct:1
+},
+
+{
+    q:"Вибери правильний варіант: I ___ football every day.",
+    answers:["play","played","will played","playing"],
+    correct:0
+},
+
+{
+    q:"Як перекладається 'Beautiful'?",
+    answers:["Швидкий","Гарний","Великий","Сильний"],
+    correct:1
+},
+
+{
+    q:"Вибери правильний варіант: Yesterday I ___ London.",
+    answers:["visit","visited","visiting","will visit"],
+    correct:1
+},
+
+{
+    q:"Як перекладається слово 'Water'?",
+    answers:["Вогонь","Повітря","Вода","Земля"],
+    correct:2
+},
+
+{
+    q:"Вибери правильний варіант: I ___ reading now.",
+    answers:["am","is","are","be"],
+    correct:0
+},
+
+{
+    q:"Як перекладається слово 'School'?",
+    answers:["Будинок","Школа","Місто","Родина"],
+    correct:1
+},
+
+{
+    q:"Вибери правильний варіант: I ___ study tomorrow.",
+    answers:["will","am","did","was"],
+    correct:0
+},
+
+{
+    q:"Як перекладається слово 'Family'?",
+    answers:["Друг","Сім'я","Книга","Учитель"],
+    correct:1
+}
+
+];
+
+let current=0;
+let score=0;
+
+function loadQuestion(){
+
+    const q=questions[current];
+
+    document.getElementById("questionNumber").innerText=
+        "Питання "+(current+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.q;
+
+    document.getElementById("quizScore").innerText=score;
+
+    const answers=
+        document.getElementById("answers");
+
+    answers.innerHTML="";
+
+    q.answers.forEach((answer,index)=>{
+
+        const button=
+            document.createElement("button");
+
+        button.className="answer";
+
+        button.innerText=answer;
+
+        button.onclick=()=>selectAnswer(index,button);
+
+        answers.appendChild(button);
+
+    });
+
+    document.getElementById("nextButton").style.display="none";
+
+    document.getElementById("quizResult").innerHTML="";
+}
+
+
+function selectAnswer(index,button){
+
+    const correct=
+        questions[current].correct;
+
+    const buttons=
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(b=>{
+        b.disabled=true;
+    });
+
+    if(index===correct){
+
+        button.classList.add("correct");
+
+        score+=10;
+
+        document.getElementById("quizScore").innerText=score;
+
+        document.getElementById("quizResult").innerHTML=
+            "🎉 Правильно! +10 балів";
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[correct].classList.add("correct");
+
+        document.getElementById("quizResult").innerHTML=
+            "💡 Не зовсім! Правильна відповідь виділена зеленим.";
+
+    }
+
+    document.getElementById("nextButton").style.display="inline-block";
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        document.querySelector(".quiz").innerHTML=`
+
+            <div style="text-align:center">
+
+                <div style="font-size:70px">🏆</div>
+
+                <h2>Тест завершено!</h2>
+
+                <br>
+
+                <p>Твій результат:</p>
+
+                <h1 style="color:#c79516">
+                    ${score} / 100
+                </h1>
+
+                <br>
+
+                <p>
+                    ${
+                        score>=80
+                        ? "🌟 Чудовий результат! Ти молодець!"
+                        : score>=50
+                        ? "👏 Хороший результат! Продовжуй навчання!"
+                        : "💪 Не здавайся! Спробуй ще раз!"
+                    }
+                </p>
+
+                <br>
+
+                <button class="btn" onclick="restartQuiz()">
+                    🔄 Пройти ще раз
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function restartQuiz(){
+
+    current=0;
+    score=0;
+
+    location.reload();
+
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
+<footer>
+
+    <h3>🌎 LinguaGo</h3>
+
+    <p>
+        Твій простий шлях до вивчення англійської.
+    </p>
+
+    <br>
+
+    <p>
+        ✨ <strong>Авторка сайту: Винар Софія</strong>
+    </p>
+
+    <p>
+        11-А клас • Ліцей №11 • м. Кам'янське
+    </p>
+
+    <p>
+        Навчальний проєкт • 2026
+    </p>
+
+</footer>
